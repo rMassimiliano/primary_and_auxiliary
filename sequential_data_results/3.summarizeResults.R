@@ -12,10 +12,6 @@ my_summary = function(x)
 Scenario_names = c("H0","H01","H10","H11","Hmiss")
 {
 suppressMessages(library("tidyverse"))
-load("A_results.rdata")
-load('freq_analysis.rdata'); 
-load('surrogate_analysis.rdata')
-
  sink(file = "table_sec6.tex")
 
 cat("\\begin{tabular}{r|cc|cc|cc} \n")
@@ -23,22 +19,34 @@ cat("\\toprule \n")
 
 for(c_scenario  in Scenario_names)
 {
-n1 = paste0(c_scenario,"_omega_1")
-n2 = paste0(c_scenario,"_omega_2")
-n10 = paste0(c_scenario,"_omega_10")
+  
+## auxiliary augmented
+auxiliary_augmented1 = readRDS(sprintf("results/auxiliary_augmented/auxiliary_augmented_%s_omega_1.rds",c_scenario))
+auxiliary_augmented2 = readRDS(sprintf("results/auxiliary_augmented/auxiliary_augmented_%s_omega_2.rds",c_scenario))
+auxiliary_augmented10 = readRDS(sprintf("results/auxiliary_augmented/auxiliary_augmented_%s_omega_10.rds",c_scenario))
 
-tmp_1 = rbind(my_summary(A_results[[n1]]),
-              my_summary(freq_analysis[[n1]]),
-              my_summary(surrogate_analysis[[n1]]))
+## primary only
+primary_only1 = readRDS(sprintf("results/primary_only/primary_only_%s_omega_1.rds",c_scenario))
+primary_only2 = readRDS(sprintf("results/primary_only/primary_only_%s_omega_2.rds",c_scenario))
+primary_only10 = readRDS(sprintf("results/primary_only/primary_only_%s_omega_10.rds",c_scenario))
+  
+## auxiliary only
+auxiliary_only1 = readRDS(sprintf("results/auxiliary_only/auxiliary_only_%s_omega_1.rds",c_scenario))
+auxiliary_only2 = readRDS(sprintf("results/auxiliary_only/auxiliary_only_%s_omega_2.rds",c_scenario))
+auxiliary_only10 = readRDS(sprintf("results/auxiliary_only/auxiliary_only_%s_omega_10.rds",c_scenario))
 
-tmp_2 = rbind(my_summary(A_results[[n2]]),
-              my_summary(freq_analysis[[n2]]),
-              my_summary(surrogate_analysis[[n2]]))
+tmp_1 = rbind(my_summary(auxiliary_augmented1),
+              my_summary(primary_only1),
+              my_summary(auxiliary_only1))
+
+tmp_2 = rbind(my_summary(auxiliary_augmented2),
+              my_summary(primary_only2),
+              my_summary(auxiliary_only2))
 
 
-tmp_10 = rbind(my_summary(A_results[[n10]]),
-              my_summary(freq_analysis[[n10]]),
-              my_summary(surrogate_analysis[[n10]]))
+tmp_10 = rbind(my_summary(auxiliary_augmented10),
+              my_summary(primary_only10),
+              my_summary(auxiliary_only10))
 
 
 
