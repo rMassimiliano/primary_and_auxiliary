@@ -14,7 +14,7 @@ suppressMessages({
 #opt = parse_args(opt_parser)
 #current_scenario = opt$scenario
 
-scenario_list = c('H01_omega_1',    'H0_omega_1'     'H10_omega_1'    'H11_omega_1', 'Hmiss_omega_1', 'H01_omega_10', 'H0_omega_10', 'H10_omega_10', 'H11_omega_10', 'Hmiss_omega_10', 'H01_omega_2', 'H0_omega_2', 'H10_omega_2', 'H11_omega_2', 'Hmiss_omega_2')
+scenario_list = c('H01_omega_1',    'H0_omega_1',     'H10_omega_1',    'H11_omega_1', 'Hmiss_omega_1', 'H01_omega_10', 'H0_omega_10', 'H10_omega_10', 'H11_omega_10', 'Hmiss_omega_10', 'H01_omega_2', 'H0_omega_2', 'H10_omega_2', 'H11_omega_2', 'Hmiss_omega_2')
 
 
   do_one_sim = function(r,...) 

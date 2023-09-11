@@ -5,18 +5,18 @@ suppressMessages({
   })
 
 
-## code to use scenario name as input
-#option_list = list(
-#    make_option(c("-s","--scenario"), type="character", default=NULL, 
-#              help="name of the simulation scenario", metavar="character")
-#) 
-#opt_parser = OptionParser(option_list=option_list)
-#opt = parse_args(opt_parser)
-#current_scenario = opt$scenario
+# code to use scenario name as input
+option_list = list(
+    make_option(c("-s","--scenario"), type="character", default=NULL, 
+              help="name of the simulation scenario", metavar="character")
+) 
+opt_parser = OptionParser(option_list=option_list)
+opt = parse_args(opt_parser)
+current_scenario = opt$scenario
 
 
 
-scenario_list = c('H01_omega_1',    'H0_omega_1'     'H10_omega_1'    'H11_omega_1', 'Hmiss_omega_1', 'H01_omega_10', 'H0_omega_10', 'H10_omega_10', 'H11_omega_10', 'Hmiss_omega_10', 'H01_omega_2', 'H0_omega_2', 'H10_omega_2', 'H11_omega_2', 'Hmiss_omega_2')
+scenario_list = c('H01_omega_1',    'H0_omega_1',     'H10_omega_1',    'H11_omega_1', 'Hmiss_omega_1', 'H01_omega_10', 'H0_omega_10', 'H10_omega_10', 'H11_omega_10', 'Hmiss_omega_10', 'H01_omega_2', 'H0_omega_2', 'H10_omega_2', 'H11_omega_2', 'Hmiss_omega_2')
 
   do_one_sim = function(r,...) 
   {
@@ -38,9 +38,9 @@ scenario_list = c('H01_omega_1',    'H0_omega_1'     'H10_omega_1'    'H11_omega
   Z_p = numeric(500)
  for(b in 1:500)
  { 
-  Y_p = c(dat$Y[1:100],params$y_future[b,])
+  S_p = c(dat$S[1:100],params$y_future[b,])
   C_p = dat$C_i 
-  Z_p[b] = (mean(Y_p[C_p ==1]) - mean(Y_p[C_p ==0]))/sqrt(var(Y_p[C_p ==1])/sum(C_p==1) + var(Y_p[C_p ==0])/sum(C_p==0))
+  Z_p[b] = (mean(S_p[C_p ==1]) - mean(S_p[C_p ==0]))/sqrt(var(S_p[C_p ==1])/sum(C_p==1) + var(S_p[C_p ==0])/sum(C_p==0))
  }
       if(mean(Z_p >= C2)<= BETA)  dec  = 'futility-stop'
        else if(Zy_IA>=C1) dec  = 'efficacy-stop'
@@ -67,8 +67,8 @@ C2     = mod$upper$bound[2]
 
 
 
-for(current_scenario in scenario_list)
-{
+#for(current_scenario in scenario_list)
+#{
    R = 5000
    decision = numeric(R)
    for(r in 1:R)
@@ -78,7 +78,7 @@ for(current_scenario in scenario_list)
    }
    saveRDS(decision, file =  paste0("results/auxiliary_only/","auxiliary_only_",current_scenario,".rds") )
    cat(sprintf('done with %s \n', current_scenario))
-}
+#}
 
 
 
