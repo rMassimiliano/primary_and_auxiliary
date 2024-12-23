@@ -155,7 +155,7 @@ geom_raster(interpolate = TRUE) +
 scale_fill_gradient2()+
 theme_classic(11) +
 geom_hline(yintercept = 2, lty = 'dashed') +
-geom_vline(xintercept = 0.10, lty = 'dashed') + 
+geom_vline(xintercept = 0.13, lty = 'dashed') + 
 labs(x = 'beta (futility)', y = 'beta (efficacy)', fill = 'Utility')+
 scale_x_continuous(expand = c(0.001,0.001)) +
 scale_y_continuous(expand = c(0.001,0.001)) +
