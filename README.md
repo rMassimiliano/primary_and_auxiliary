@@ -9,9 +9,12 @@ This repository contains the code to implement the methods proposed in "A cautio
 
 * The folders `multiple_tests_K2/` and `multiple_tests_K6/` contains codes to produce the results of Section 5 of the manuscript. 
 
+* The folder `Sensitivity_lambda/` contains the code to compute Table S2 of the Supplementary Materials.
+
 * The folder `sequential_prior_simulations` contains code to compute the optimal solution for the sequential design described in Section 6 of the manuscript
 
 * The folder `sequential_data_results` contains the code to replicate the results for Section 6.
 
+* The folder `sequential_prior_simulations_survival/` contains code to compute the optimal solution for the restrospective analysis presented in section S2 of the Supplementary Material 
 
 
